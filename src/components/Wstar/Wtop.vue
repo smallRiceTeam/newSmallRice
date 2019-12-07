@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-26 10:13:58
- * @LastEditTime: 2019-12-05 10:12:53
+ * @LastEditTime: 2019-12-07 17:04:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \xmsc\src\components\w_star.vue
@@ -16,7 +16,7 @@
           </li>
         </ul>
       </div>
-      <input class="wsearch_star" type="text" placeholder="晒出一亿像素">
+      <input class="wsearch_star" type="text" placeholder="晒出一亿像素" @click="wserch">
       <i class="iconfont icon-sousuo"></i>
   </div>
 </template>
@@ -45,6 +45,9 @@ export default {
     },
     clk(index){
       this.isactive=index;
+    },
+    wserch(){
+      this.$router.push('/TopicSearch/')
     }
   }
 }

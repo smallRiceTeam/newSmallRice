@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-26 10:13:58
- * @LastEditTime: 2019-12-04 14:17:32
+ * @LastEditTime: 2019-12-05 21:16:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \xmsc\src\components\w_star.vue
@@ -33,6 +33,8 @@ export default {
         wtelvalue:'',
         isactive:false,
         wmimavalue:'',
+        wtatol:[],
+        wnumber:0
       }
   },
   methods:{
@@ -50,39 +52,86 @@ export default {
           this.$router.push('/wlogin/')
       },
        panduan(){
-          console.log(this.wtelvalue)
-          console.log(this.wmimavalue)
+                this.wnumber++
 	     		var r=/^1(3|4|5|7|8)\d{9}$/;
 	     		if(this.wtelvalue.length==0 || this.wmimavalue.length==0){
 	     			Toast('用户名密码不能为空!');
-	     		}else if(r.test(this.wtelvalue)){
-            axios({
-                method:"post",
-                url:"http://localhost:3000/car",
-                data:{
-                    id:"", 
-                    name:this.wtelvalue,
-                    userpass:this.wmimavalue
+                }
+                else if(r.test(this.wtelvalue)){
+                if(this.wtatol==""){
+                    axios({
+                        method:"post",
+                        url:"http://localhost:3000/car",
+                        data:{
+                            id:this.wnumber, 
+                            name:this.wtelvalue,
+                            userpass:this.wmimavalue
+                            }
+                        })
+                    .then((res)=>{
+                        // console.log(res.data)
+                    if(res.request.status==201){
+                        Toast('注册成功!');
+                        window.localStorage.setItem('name',this.wtelvalue);
+                        setTimeout(()=>{
+                        this.$router.push('/Wmine/')
+                            },2000);
+                    }else{
+                        Toast('注册失败!');
                     }
-                })
-            .then((res)=>{
-                console.log(res.data)
-            if(res.request.status==201){
-                Toast('注册成功!');
-                window.localStorage.setItem('name',this.wtelvalue);
-                setTimeout(()=>{
-                  this.$router.push('/Wmine/')
-			          },2000);
-            }else{
-                Toast('注册失败!');
-            }
+                    })
+                    .catch((err)=>{
+                        console.log(err);
+                    })
+                }else{
+                    for(let i in this.wtatol){
+                    if(this.wtatol[i].name == this.wtelvalue){
+                        Toast('该用户名已被注册请重新输入!');
+                        return;
+                    }else{
+                    axios({
+                        method:"post",
+                        url:"api/car",
+                        data:{
+                            id:this.wnumber, 
+                            name:this.wtelvalue,
+                            userpass:this.wmimavalue
+                            }
+                        })
+                    .then((res)=>{
+                        // console.log(res.data)
+                    if(res.request.status==201){
+                        Toast('注册成功!');
+                        window.localStorage.setItem('name',this.wtelvalue);
+                        setTimeout(()=>{
+                        this.$router.push('/Wmine/')
+                            },2000);
+                    }else{
+                        Toast('注册失败!');
+                    }
+                    })
+                    .catch((err)=>{
+                        console.log(err);
+                        })
+                    }
+                } 
+                }
+                }else{
+                    Toast('请输入正确的手机号!');
+                }
+	}
+},
+created(){
+      axios.get('api/car')
+      .then((res)=>{
+          this.wtatol=res.data;
+        //   console.log(this.wtatol)
             })
             .catch((err)=>{
                 console.log(err);
             })
-	     	}
-	    }
-  }
+        }
+
 }
 </script>
 

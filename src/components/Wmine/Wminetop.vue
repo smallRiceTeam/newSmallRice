@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-26 10:13:58
- * @LastEditTime: 2019-12-02 16:31:00
+ * @LastEditTime: 2019-12-07 09:27:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \xmsc\src\components\w_star.vue
@@ -10,9 +10,10 @@
   <div id="Wminetop">
       <div class="Wmytop">
           <div class="Wmytopcon">
-            <img src="../../assets/img/Wphoto1.jpg" alt="" @click="wgostar">
+            <img id="imgId" src="../../assets/img/Wphoto1.jpg" alt="" @click="wgostar">
             <span @click="wgobottom" v-show="yonghushow">{{username}}</span>
             <span @click="wgobottom" v-show="loginshow" class="wloginregister">登陆/注册</span>
+            <button class="whuantou" @click="whuan">更换头像</button>
             <a href="#">
                 <i class="iconfont icon-huiyuan-"></i>
                 会员积分
@@ -95,17 +96,42 @@ export default {
       },
       wgostar(){
           this.$router.push('/Wstart/')
+      },
+      whuan(){
+          this.captureImage();
+      },
+      wupdataed(){
+        this.username = window.localStorage.getItem('name');
+        if(this.username){
+            this.yonghushow=true;
+        }else{
+            this.loginshow=true;
+        }
+      },
+      captureImage(){
+        var cmr = window.plus.camera.getCamera();//获取摄像头对象
+        var res = cmr.supportedImageResolutions[2];//获取支持的分辨率，这里是第三个分辨率,直接使用supportenImageResolutions可以获取自己手机所支持的分辨率有多少种格式，返回值类型 string[]
+        var fmt = cmr.supportedImageFormats[0];//JPG格式，
+    
+        cmr.captureImage( function( path ){//成功回调函数，获取路径
+        alert( "拍照成功" );//把保存在app目录下的照片显示在img标签里
+        window.plus.io.resolveLocalFileSystemURL(path, function(entry) {
+            let pathPhoto = entry.toLocalURL();
+            console.log(pathPhoto);
+            document.getElementById("imgId").src=pathPhoto;
+        }, function(e) {
+            console.log("出错了！");
+        });
+        },
+        function( error ) {
+            alert( "Capture image failed: " + error.message );
+        },
+        {resolution:res,format:fmt}//分辨率和格式，必填，就是上面获取到的。
+        )},
+      },
+      created(){
+        this.wupdataed();
       }
-  },
-  created(){
-      this.username = window.localStorage.getItem('name');
-      if(this.username){
-          this.yonghushow=true;
-      }else{
-          console.log(this.yonghushow)
-          this.loginshow=true;
-      }
-  }
 }
 
 
@@ -147,13 +173,15 @@ export default {
                 line-height: 30px;
                 text-align: center;
                 border-top-left-radius:50px; 
-                border-bottom-left-radius:50px; 
-                margin-left: 72px;
+                border-bottom-left-radius:50px;
             }
             i{
                 color: #b75001;
             }
     }
+}
+#imgId{
+    border-radius: 50%;
 }
 .WmineOrder{
     width: 100%;
@@ -244,6 +272,15 @@ export default {
     }
 }
 .wloginregister{
-    font-size: 16px;
+font-size: 16px;
+}
+.whuantou{
+    width: 70px;
+    height: 30px;
+    background: #ffd43f;
+    border: none;
+    border-radius: 20px;
+    color: #b65005;
+    margin-left: 8px;
 }
 </style>

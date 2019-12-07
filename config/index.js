@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-11-26 13:32:06
- * @LastEditTime: 2019-12-02 14:14:39
+ * @LastEditTime: 2019-12-05 21:33:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \newxmsc\config\index.js
@@ -18,7 +18,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {        
+        target: 'http://localhost:3000',        
+        changeOrigin: true,        
+        pathRewrite: {  
+          '^/api': ''        
+        }      
+      }
+ 
+    },
 
     // Various Dev Server settings
     host: '10.35.161.14', // can be overwritten by process.env.HOST
@@ -51,7 +60,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps

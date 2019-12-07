@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-26 10:13:58
- * @LastEditTime: 2019-12-05 21:16:12
+ * @LastEditTime: 2019-12-06 09:30:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \xmsc\src\components\w_star.vue
@@ -9,15 +9,11 @@
 <template>
 <div>
     <span class="iconfont icon-cuo" @click="gologinindex"></span>
-    <p class="wtel">手机号登陆</p>
+    <p class="wtel">修改密码</p>
     <input class="wtelipnt" type="text" placeholder="请输入手机号" v-model="wtelvalue" @keydown="getinputvalue" />
     <input class="wtelipnt" type="text" v-model="wmimavalue" placeholder="请输入密码" />
-    <div class="logincount">
-        <span class="account" @click="wgoregister">注册</span>
-        <span class="iconfont icon-youjiantou"></span>
-        <span class="wgaimima" @click="gaimima">修改密码</span>
-    </div>
-    <input class="wloginde" type="button" value="登陆" v-bind:class="{wactive:isactive}" @click="panduan">
+    <input class="wtelipnt" type="text" v-model="wnewmima" placeholder="请输入新密码" />
+    <input class="wloginde" type="button" value="确认修改" v-bind:class="{wactive:isactive}" @click="panduan">
     <div class="Wgreenb">
         <span class="wgreen">已阅读并同意<span class="wgreen wgreenll">《小米商城用户协议》《小米账号用协议》《小米账号隐私政策》</span></span>
     </div>
@@ -25,6 +21,7 @@
 </template>
 
 <script> 
+import axios from 'axios';
 import { Toast } from 'mint-ui';
 export default {
   name: 'wminebanner',
@@ -33,7 +30,19 @@ export default {
         wtelvalue:'',
         isactive:false,
         wmimavalue:'',
+        wnewmima:'',
+        wtatol:[]
       }
+  },
+  created(){
+      axios.get('api/car')
+      .then((res)=>{
+          this.wtatol=res.data;
+          console.log(this.wtatol)
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
   },
   methods:{
       getinputvalue(){
@@ -43,47 +52,39 @@ export default {
               this.isactive=false
           }
       },
-      gaimima(){
-          this.$router.push('/wxiugaimima/')
-      },
       gologinindex(){
           this.$router.push('/Wmine/')
       },
-      wgoregister(){
-          this.$router.push('/wregister/')
-      },
-    panduan(){
+      panduan(){
       var r=/^1(3|4|5|7|8)\d{9}$/;
-        if(this.wtelvalue.length==0 || this.wmimavalue.length==0){
+        if(this.wtelvalue=="" || this.wmimavalue=="" || this.newmima==""){
             Toast('用户名密码不能为空!');
         }else if(r.test(this.wtelvalue)){
-      fetch('api/car?name='+this.wtelvalue)
-      .then(res=>{
-        return res.json();
-      })
-      .then(data=>{
-          console.log(data)
-          let pass=data[0].userpass
-          let name=data[0].name
-          console.log(pass)
-          if(this.wmimavalue==pass && this.wtelvalue==name){
-              Toast('欢迎您!');
-              window.localStorage.setItem('name',this.wtelvalue);
-              console.log(name)
-              setTimeout(()=>{
-                  this.$router.push('/Wmine/')
-			    },2000);
-          }
-          else{
-                Toast('用户名或密码错误!');
-          }
-            })
-            .catch(err=>{
-            console.log(err);
-            })
+            for(let i in this.wtatol){
+                if(this.wtatol[i].name == this.wtelvalue && this.wtatol[i].userpass == this.wmimavalue){
+                    console.log(this.wtatol[i].id)
+                    axios.patch('api/car/'+this.wtatol[i].id,{
+                        userpass:this.wnewmima,
+                    })
+                    .then((res)=>{
+                        Toast('修改成功!');
+                        setTimeout(()=>{
+                        this.$router.push('/wlogin/')
+                        },2000);
+                    })
+                    .catch((err)=>{
+                        console.log(err);
+                    })
+                    return
+                }else{
+                     Toast('您输入的用户名或密码不正确啊!');
+                }
+            }
+        }else{
+            Toast('您输入的用户名或密码不正确!');
         }
     },
-  }
+}
 }
 </script>
 

@@ -1,0 +1,183 @@
+{
+  "car": [
+    {
+      "id": 1,
+      "name": "18049204461",
+      "userpass": "212"
+    },
+    {
+      "id": 2,
+      "name": "18049204462",
+      "userpass": "123"
+    },
+    {
+      "id": 3,
+      "name": "18049204463",
+      "userpass": "123"
+    }
+  ],
+  "bannerimgs": [
+    {
+      "src": "../../static/img/banner1.jpg",
+      "href": "https://www.baidu.com"
+    },
+    {
+      "src": "../../static/img/banner2.jpg",
+      "href": "http://1000phone.com"
+    },
+    {
+      "src": "../../static/img/banner1.jpg",
+      "href": "http://www.jingdong.com"
+    },
+    {
+      "src": "../../static/img/banner2.jpg",
+      "href": "http://www.jingdong.com"
+    }
+  ],
+  "items": [
+    {
+      "name": "精选",
+      "description": "为您推荐",
+      "path": "/HomeList"
+    },
+    {
+      "name": "手机",
+      "description": "探索黑科技",
+      "path": "/HomeList"
+    },
+    {
+      "name": "电器",
+      "description": "数码家电",
+      "path": "/HomeList"
+    },
+    {
+      "name": "智能家庭",
+      "description": "生活听我的",
+      "path": "/HomeList"
+    },
+    {
+      "name": "时尚",
+      "description": "潮流生活",
+      "path": "/HomeList"
+    }
+  ],
+  "lists": [
+    {
+      "src": "../static/img/4e121964bdb26b0fd373fc1ecb1af2da.jpeg",
+      "description": "精选原生竹浆，健康环保",
+      "money": "27.5",
+      "span": "秒杀",
+      "type": "精选"
+    },
+    {
+      "src": "../static/img/c33f008a86c151a1500d44d599351256.jpg",
+      "description": "铝合金银枪",
+      "money": "36.9",
+      "span": "包邮",
+      "type": "精选"
+    },
+    {
+      "src": "../static/img/5b8c292c8db0db50e3c89db6aace900a.jpg",
+      "description": "精选原生竹浆，健康环保",
+      "money": "27.5",
+      "span": "秒杀",
+      "type": "精选"
+    },
+    {
+      "src": "../static/img/4e121964bdb26b0fd373fc1ecb1af2da.jpeg",
+      "description": "精选原生竹浆，健康环保",
+      "money": "27.5",
+      "span": "秒杀",
+      "type": "精选"
+    },
+    {
+      "src": "../static/img/c33f008a86c151a1500d44d599351256.jpg",
+      "description": "铝合金银枪",
+      "money": "36.9",
+      "span": "包邮",
+      "type": "精选"
+    },
+    {
+      "src": "../static/img/5b8c292c8db0db50e3c89db6aace900a.jpg",
+      "description": "精选原生竹浆，健康环保",
+      "money": "27.5",
+      "span": "秒杀",
+      "type": "精选"
+    },
+    {
+      "src": "../static/img/4e121964bdb26b0fd373fc1ecb1af2da.jpeg",
+      "description": "精选原生竹浆，健康环保",
+      "money": "99",
+      "span": "包邮",
+      "type": "手机"
+    },
+    {
+      "src": "../static/img/4e121964bdb26b0fd373fc1ecb1af2da.jpeg",
+      "description": "精选原生竹浆，健康环保",
+      "money": "27.5",
+      "span": "秒杀",
+      "type": "电器"
+    },
+    {
+      "src": "../static/img/4e121964bdb26b0fd373fc1ecb1af2da.jpeg",
+      "description": "精选原生竹浆，健康环保",
+      "money": "27.5",
+      "span": "秒杀",
+      "type": "智能家庭"
+    },
+    {
+      "src": "../static/img/4e121964bdb26b0fd373fc1ecb1af2da.jpeg",
+      "description": "精选原生竹浆，健康环保",
+      "money": "27.5",
+      "span": "秒杀",
+      "type": "时尚"
+    }
+  ],
+  "Myuls": [
+    {
+      "name": "小米",
+      "label": "手机"
+    },
+    {
+      "name": "小米1",
+      "label": "手机"
+    },
+    {
+      "name": "小米2",
+      "label": "手机"
+    },
+    {
+      "name": "小米3",
+      "label": "手机"
+    }
+  ],
+  "Content": [
+    {
+      "product": "小米CC9 Pro",
+      "style": "color: rgb(72, 72, 72);border-color: rgb(151, 194, 138);background: rgb(228, 245, 226);"
+    },
+    {
+      "product": "小米手表",
+      "style": "color: rgb(72, 72, 72); border-color: rgb(250, 194, 136); background: rgb(252, 229, 205);"
+    },
+    {
+      "product": "众筹新品",
+      "style": "color: rgb(5, 5, 5); border-color: rgb(252, 160, 167); background: rgb(249, 234, 234);"
+    },
+    {
+      "product": "小米手环4",
+      "style": "color: rgb(72, 72, 72); border-color: rgb(227, 175, 150); background: rgb(250, 232, 232);"
+    }
+  ],
+  "historys": [
+    {
+      "name": "小米1",
+      "id": 1
+    }
+  ],
+  "hotTopics":[
+    {
+      "Topic":" 王一博K30独家花絮解锁，继续Call! "
+    }
+  ]
+}

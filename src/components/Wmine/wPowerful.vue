@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-26 10:13:58
- * @LastEditTime: 2019-12-04 19:21:58
+ * @LastEditTime: 2019-12-06 14:52:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \xmsc\src\components\w_star.vue
@@ -40,7 +40,9 @@
       </div>
       <div class="wvip">
           <span class="iconfont icon-settings"></span>
-          <span class="wximivip" @click="wLogout">退出登录</span>
+            <template>
+                <el-button type="text" @click="open" class="wtuilogin">退出登录</el-button>
+            </template>
           <span class="iconfont icon-youjiantou"></span>
       </div>
   </div>
@@ -51,13 +53,25 @@ import { Toast } from 'mint-ui';
 export default {
   name: 'wpowerful',
   methods:{
-      wLogout(){
+      open(){
+        this.$confirm('是否退出登录', '提示', {
+          confirmButtonText: '确定  ',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true
+        }).then(() => {
           window.localStorage.removeItem('name');
-          Toast('退出成功!');
-          setTimeout(()=>{
-            this.$router.push('/wlogin/')
-		  },2000);
-      },
+          this.$message({
+            type:'success',
+            message: '退出成功!'
+        });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消退出'
+          });
+        });
+      }
   }
 }
 
@@ -65,6 +79,10 @@ export default {
 </script>
 
 <style lang="scss" scoped="" type="text/css">
+.wtuilogin{
+    color: black;
+    margin-left: 22px;
+}
 .wvip{
     display: flex;
     font-size: 16px;

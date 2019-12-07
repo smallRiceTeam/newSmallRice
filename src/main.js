@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-11-26 13:32:06
- * @LastEditTime: 2019-12-04 20:34:53
+ * @LastEditTime: 2019-12-06 10:08:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \xmscd:\newxmsc\newxmsc\src\main.js
@@ -16,7 +16,9 @@ import store from './store'
 Vue.use(MintUI)
 import axios from 'axios'
 Vue.prototype.$http = axios
-
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

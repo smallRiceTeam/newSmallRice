@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-08 20:29:24
- * @LastEditTime: 2019-12-05 10:22:41
+ * @LastEditTime: 2019-12-05 21:18:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue\tabbar\src\components\tabbar\tabBar.vue
@@ -27,7 +27,7 @@ export default {
     }
   },
   created(){
-    fetch('http://localhost:3000/bannerimgs')
+    fetch('api/bannerimgs')
       .then(res=>{
         return res.json();
       })
