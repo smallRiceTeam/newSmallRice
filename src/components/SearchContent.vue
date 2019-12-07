@@ -3,7 +3,7 @@
  * @Author: 张涛
  * @Date: 2019-12-03 11:49:39
  * @LastEditors: yx
- * @LastEditTime: 2019-12-05 14:56:53
+ * @LastEditTime: 2019-12-05 19:29:07
  -->
 <template>
     <div class="box">
@@ -20,23 +20,8 @@
             <p>常用分类</p>
         </div>
         <div class="hotClassify-list">
-            <router-link to="" v-for="(Type,index) in Types" :key="index">
-               {{Type.typesof}}
-            </router-link>
-            <router-link to="" >
-               电视
-            </router-link>
-            <router-link to="" >
-               笔记本
-            </router-link>
-            <router-link to="" >
-               盒子
-            </router-link>
-            <router-link to="" >
-               路由器
-            </router-link>
-            <router-link to="" >
-               平板
+            <router-link to="" v-for="(Typ,index) in Typs" :key="index">
+               {{Typ.typesof}}
             </router-link>
         </div>
 
@@ -49,29 +34,50 @@
 import axios from 'axios';
 
 export default {
-    name:'SearchContent',
    data() {
       return {
           Conenys:[],
-          Types:[]
+          Typs:[
+            {
+            "typesof":"手机"
+            },
+            {
+            "typesof":"电视"
+            },
+            {
+            "typesof":"笔记本"
+            },
+            {
+            "typesof":"路由器"
+            },
+            {
+            "typesof":"平板"
+            },
+            {
+            "typesof":"盒子"
+            },
+            {
+            "typesof":"手表"
+            },
+            {
+            "typesof":"空气净化器"
+            }
+        ]
+
       }
    },
    created() {
-     //从后端获取数据    
-    axios.all([
-        // axios.get('http://localhost:3000/Content'),
-        // axios.get('http://localhost:3000/Types')
-    ])
-     .then(axios.spread(function (Conenys, Types){
-        // this.Conenys = userResp.data;
-        // this.Types = reposResp.data
-        // console.log(  this.Types)
-     }))
+     //从后端获取数据     
+     axios.get('http://localhost:3000/Content')
+     .then(res=>{ 
+         this.Conenys = res.data;//内部数据，由于没有渲染在组件里，所以，没有触发组件更新
+        
+     })
      .catch(err=>{
          console.log(err);
      });
     },
-
+  
 }
 </script>
             
@@ -114,7 +120,7 @@ export default {
     max-height: 1.2rem;
     overflow: hidden;
     padding-left: .32rem;
-    padding-bottom: 1.72rem;
+    padding-bottom: .3rem;
     a{
         display: inline-block;
         background: #f5f5f5;

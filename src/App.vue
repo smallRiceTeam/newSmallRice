@@ -2,7 +2,7 @@
  * @Author: yx
  * @Date: 2019-11-19 17:38:03
  * @LastEditors: yx
- * @LastEditTime: 2019-11-20 00:08:18
+ * @LastEditTime: 2019-12-05 20:55:56
  * @Description: 
  -->
 <template>
@@ -30,6 +30,7 @@ html{
 body{
   font-size: 14px;
   height: 100%;
+  /* font-family: helvetica; */
 }
 
 ul,li{

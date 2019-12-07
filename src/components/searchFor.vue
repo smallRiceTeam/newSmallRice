@@ -3,18 +3,21 @@
  * @Author: 张涛
  * @Date: 2019-12-03 09:59:40
  * @LastEditors: yx
- * @LastEditTime: 2019-12-05 11:51:52
+ * @LastEditTime: 2019-12-05 19:37:01
  -->
 <template>
     <div class="box">
-        <div class="search">
-            <Back></Back>
-            <input type="text" placeholder="小米CC9 Pro" autofocus="autofocus" v-model="inputx">
+        <div class="s" style="position:fixed;z-index:10;" >
+            <div class="search">
+                <Back></Back>
+                <input id="Tinput" type="text" placeholder="小米CC9 Pro" autofocus="autofocus" v-model="inputx">
+                <i class="el-icon-error" v-show="isHows"  @click="Clear()"></i>
+            </div>
+            <p @click="seach()">搜索</p>
         </div>
-        <p @click="seach()">搜索</p>
         <ul  class="uls" v-show="isShow">
             <li v-if="Myuls.length==0?true:false">抱歉，未搜索到内容</li>
-            <li v-for="(Myul,index) in Myuls" :key="index" >
+            <li v-for="(Myul,index) in Myuls" :key="index" @touchstart="hisname($event);addhistory()">
                 <router-link to="" >{{Myul.name}}</router-link>
                 <div class="labels">{{Myul.label}}</div>
             </li>
@@ -32,8 +35,10 @@ export default {
    data() {
       return {
             inputx:"",
+            hname:"",
             Myuls:[],
-            isShow:false
+            isShow:false,
+            isHows:false
       }
     },
 
@@ -49,8 +54,10 @@ export default {
          seach(){
             if(this.inputx.trim()!=""){
               this.isShow=true
+              this.isHows=true
             }else{
               this.isShow=false
+              this.isHows=false
             }
              axios.get('http://localhost:3000/Myuls?q='+this.inputx.trim())
                 .then(res=>{ 
@@ -59,7 +66,28 @@ export default {
                 .catch(err=>{
                 console.log(err);
                 });
-         }
+        },
+        Clear(){
+            this.inputx="";
+            this.isShow=false
+            this.isHows=false
+        },
+         hisname(event){
+              console.log(event.target.innerHTML)
+              this.hname=event.target.innerHTML
+            },
+        addhistory(){
+            if(this.inputx.trim()==""){
+                return false;
+            }
+            axios.post('http://localhost:3000/historys',{
+                name:this.hname.trim()
+                })
+                .then(res=>{
+                    console.log('添加成功',res.data)
+                });
+          
+        }
         
     }
 }
@@ -76,10 +104,19 @@ export default {
         font-size: 16px;
     }
 }
+.s{
+    height: .5rem;
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    background: #f6f6f6;
+}
 .search{
     height: .3rem;
     width: 80%;
     display: flex;
+    position: relative;
     align-items: center;
     border: 1px solid #e5e5e5;
     background: #ffffff;
@@ -91,6 +128,12 @@ export default {
         font-size: 18px;
         outline: none;
         color: #9a9a9a;
+    }
+    i{
+        color:#e2e2e2;
+        position: absolute;
+        right:5px;
+        font-size: 18px;
     }
 
 }

@@ -2,7 +2,7 @@
  * @Author: yx
  * @Date: 2019-11-19 22:52:03
  * @LastEditors: yx
- * @LastEditTime: 2019-12-04 21:28:32
+ * @LastEditTime: 2019-12-05 19:51:59
  * @Description: 分类侧边栏
  -->
 
@@ -116,6 +116,7 @@ export default {
     /* width: 23%; */
     overflow: hidden;
     margin-left: 23%;
+    margin-bottom: 0.5rem;
     /* background: yellow; */
 }
 ul{

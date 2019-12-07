@@ -2,13 +2,14 @@
  * @Description: 
  * @Author: 张涛
  * @Date: 2019-12-03 09:40:55
- * @LastEditors: yx
- * @LastEditTime: 2019-12-05 14:48:50
+ * @LastEditors: 张涛
+ * @LastEditTime: 2019-12-05 16:52:11
  -->
 <template>
    <div>
       <searchFor></searchFor>
       <SearchContent></SearchContent>
+      <Searchhistory></Searchhistory>
    </div> 
 </template>
             
@@ -16,17 +17,17 @@
 
 import searchFor from '../components/searchFor';
 import SearchContent from '../components/SearchContent';
+import Searchhistory from '../components/Searchhistory';
 
 export default {
-   name:'SearchInterface',
    data() {
       return {
       }
    },
-
+   
    components:{
-        searchFor,SearchContent
-   }
+        searchFor,SearchContent,Searchhistory
+   },
 }
 </script>
             

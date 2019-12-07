@@ -3,7 +3,7 @@
  * @Author: 张涛
  * @Date: 2019-12-02 09:22:32
  * @LastEditors: yx
- * @LastEditTime: 2019-12-05 11:55:45
+ * @LastEditTime: 2019-12-05 19:30:27
  -->
 <template>
     <div class="box1">
@@ -37,7 +37,6 @@
 import axios from 'axios';
 
 export default {
-    name:'HomeList',
     props:['typename'],
     data() {
       return {
