@@ -1,9 +1,9 @@
 /*
+ * @Author: yx
+ * @Date: 2019-11-19 17:38:03
+ * @LastEditors: yx
+ * @LastEditTime: 2019-11-29 20:30:02
  * @Description: 
- * @Author: 祁冬梅
- * @Date: 2019-11-26 14:30:39
- * @LastEditors: 祁冬梅
- * @LastEditTime: 2019-11-27 19:41:26
  */
 'use strict'
 // Template version: 1.3.1
@@ -18,11 +18,12 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-    	'/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        pathRewrite: {
-         	 '^/api': ''
+      '/api':{
+        // target:'http://10.35.161.175',
+        target:'http://localhost:3000',
+        changeOringe:true,
+        pathRewrite:{
+          '^/api':''
         }
       }
     },

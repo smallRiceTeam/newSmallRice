@@ -1,4 +1,4 @@
-# xiaomi
+# xiaoyou
 
 > A Vue.js project
 
